@@ -40,7 +40,7 @@ export default {
 
         braintree.dropin.create(
             {
-                authorization: "sandbox_bn3krc5m_5brrmwtybfkxy674",
+                authorization: "",
                 selector: "#dropin-container",
             },
             (err, dropinInstance) => {
@@ -95,63 +95,68 @@ export default {
 
     <form @submit.prevent="sendOrderRequest" action="">
 
-    <div class="customer-info">
+        <div class="customer-info">
 
-        <h3>Indirizzo di spedizione</h3>
+            <h3>Indirizzo di spedizione</h3>
 
-        <div class="form-input">
-            <label for="customer_name" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="customer_name" name="customer_name" v-model="formData.customer_name" required>
-            <div v-if="formErrors['customer_name']" class="alert alert-danger mt-3">
-                {{ formErrors['customer_name'][0] }}
+            <div class="form-input">
+                <label for="customer_name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="customer_name" name="customer_name"
+                    v-model="formData.customer_name" required>
+                <div v-if="formErrors['customer_name']" class="alert alert-danger mt-3">
+                    {{ formErrors['customer_name'][0] }}
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label for="customer_lastname" class="form-label">Cognome</label>
+                <input type="text" class="form-control" id="customer_lastname" name="customer_lastname"
+                    v-model="formData.customer_lastname" required>
+                <div v-if="formErrors['customer_lastname']" class="alert alert-danger mt-3">
+                    {{ formErrors['customer_lastname'][0] }}
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label for="customer_address" class="form-label">Indirizzo</label>
+                <input type="text" class="form-control" id="customer_address" name="customer_address"
+                    v-model="formData.customer_address" required>
+                <div v-if="formErrors['customer_address']" class="alert alert-danger mt-3">
+                    {{ formErrors['customer_address'][0] }}
+                </div>
+            </div>
+
+
+
+            <div class="form-input">
+                <label for="customer_email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="customer_email" name="customer_email"
+                    aria-describedby="emailHelp" v-model="formData.customer_email" required>
+                <!-- <div id="emailHelp" class="form-text">Non condivideremo la tua mail con terzi.</div> -->
+                <div v-if="formErrors['customer_email']" class="alert alert-danger mt-3">
+                    {{ formErrors['customer_email'][0] }}
+                </div>
+            </div>
+
+
+            <div class="form-input">
+                <label for="customer_phone" class="form-label">Numero di telefono</label>
+                <input type="text" class="form-control" id="customer_phone" name="customer_phone"
+                    v-model="formData.customer_phone" required pattern="[0-9]{10,12}" inputmode="numeric">
+                <div v-if="formErrors['customer_phone']" class="alert alert-danger mt-3">
+                    {{ formErrors['customer_phone'][0] }}
+                </div>
+            </div>
+
+            <div class="form-text">Non condivideremo i tuoi dati con terzi.</div>
+
+            <!-- payment box -->
+            <div id="dropin-wrapper">
+                <div id="checkout-message"></div>
+                <div id="dropin-container"></div>
+                <button id="submit-button" type="submit" class="btn btn-success">Paga</button>
             </div>
         </div>
-
-        <div class="form-input">
-            <label for="customer_lastname" class="form-label">Cognome</label>
-            <input type="text" class="form-control" id="customer_lastname" name="customer_lastname" v-model="formData.customer_lastname" required>
-            <div v-if="formErrors['customer_lastname']" class="alert alert-danger mt-3">
-                {{ formErrors['customer_lastname'][0] }}
-            </div>
-        </div>
-
-        <div class="form-input">
-            <label for="customer_address" class="form-label">Indirizzo</label>
-            <input type="text" class="form-control" id="customer_address" name="customer_address" v-model="formData.customer_address" required>
-            <div v-if="formErrors['customer_address']" class="alert alert-danger mt-3">
-                {{ formErrors['customer_address'][0] }}
-            </div>
-        </div>
-
-
-
-        <div class="form-input">
-            <label for="customer_email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="customer_email" name="customer_email" aria-describedby="emailHelp" v-model="formData.customer_email" required>
-            <!-- <div id="emailHelp" class="form-text">Non condivideremo la tua mail con terzi.</div> -->
-            <div v-if="formErrors['customer_email']" class="alert alert-danger mt-3">
-                {{ formErrors['customer_email'][0] }}
-            </div>
-        </div>
-
-
-        <div class="form-input">
-            <label for="customer_phone" class="form-label">Numero di telefono</label>
-            <input type="text" class="form-control" id="customer_phone" name="customer_phone" v-model="formData.customer_phone" required pattern="[0-9]{10,12}" inputmode="numeric">
-            <div v-if="formErrors['customer_phone']" class="alert alert-danger mt-3">
-                {{ formErrors['customer_phone'][0] }}
-            </div>
-        </div>
-
-        <div class="form-text">Non condivideremo i tuoi dati con terzi.</div>
-
-        <!-- payment box -->
-        <div id="dropin-wrapper">
-        <div id="checkout-message"></div>
-        <div id="dropin-container"></div>
-        <button id="submit-button" type="submit" class="btn btn-success">Paga</button>
-    </div>
-    </div>
 
     </form>
 
